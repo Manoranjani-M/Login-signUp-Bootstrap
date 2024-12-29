@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="body d-flex justify-content-center mt-5" >
+    <div id="loginForm" style="width: 400px;"  class=" loginForm p-5 bg-primary  justify-content-center align-center" >
+        <h2 class="m-3 mt-2">Login</h2> 
+        <form name="loginform" action="" onsubmit="return loginUser()"   style="width: 300px;" class="  was-validate">
+            <div class="form-group ">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="loginEmail" class="form-control " required>
+            </div>
+            <div class="form-group m-1">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" class="form-control" required>
+            </div>
+            <div class="d-flex justify-content-center  pt-5">
+            <a href="sign up.html" class="logining text-white m-3">Create new account?</a>
+            <button type="submit" class="btn btn-success mt-2">Login</button>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+
+     function loginUser() {
+            var loginEmail = document.getElementById('loginEmail').value;
+            var loginPassword = document.getElementById('loginPassword').value;
+
+            var users = JSON.parse(localStorage.getItem('users')) || [];
+
+            var loggedIn = false;
+            users.forEach(function(user) {
+                if (user.email === loginEmail && user.password === loginPassword) {
+                    alert("Login successful! Welcome, " + user.username + "!");
+                    loggedIn = true;
+                    return false;   
+                }
+                else{
+                    alert("If you don't have account,Please sign up!")
+                    
+                }
+            
+            });
+
+            if (!loggedIn) {
+                alert("Invalid email or password.");
+            }
+            return loggedIn;
+        }
+</script>
+</body>
